@@ -59,6 +59,8 @@ In the settings form, there's a field labeled 'Order', which you can use to achi
 
 1. Settings
 
+2. Some of the Tilt Social Icons
+
 == Changelog ==
 
 = 0.9 =
