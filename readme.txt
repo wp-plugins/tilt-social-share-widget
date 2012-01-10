@@ -6,7 +6,7 @@ Requires at least: 3.3
 Tested up to: 3.3
 Stable tag: 0.9 beta
 
-Tilt Social Share Widget allows your users to quickly share your content on social sites. View the "Description" tab for all available services.
+Tilt Social Share Widget allows your users to quickly share your content on social sites. View "Description" tab for available services.
 
 == Description ==
 
