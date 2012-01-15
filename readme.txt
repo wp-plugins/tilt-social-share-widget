@@ -4,7 +4,7 @@ Donate link: http://xonoxlabs.com/
 Tags: sharing, share, social, delicious, digg, evernote, facebook, friendfeed, google+, google bookmarks, google buzz, linkedin, newsvine, ping.fm, posterous, reddit, slashdot, stumbleupon, technorati, tumblr, twitter
 Requires at least: 3.3
 Tested up to: 3.3
-Stable tag: 0.5 beta
+Stable tag: 0.6 beta
 
 Tilt Social Share Widget allows your users to quickly share your content on social sites. View "Description" tab for available services.
 
@@ -65,3 +65,6 @@ In the settings form, there's a field labeled 'Order', which you can use to achi
 
 = 0.5 =
 Beta version.
+
+= 0.6 =
+Corrected CSS loading problem (icons were not visible).

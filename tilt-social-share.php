@@ -4,7 +4,7 @@ Plugin Name: Tilt Social Share Widget
 Plugin URI: http://xonoxlabs.com/
 Description: Display icons that allow users to share your posts and pages in common social websites.
 Author: Rui Oliveira
-Version: 0.5
+Version: 0.6
 Author URI: http://xonoxlabs.com/
 */
 
@@ -139,22 +139,22 @@ class tiltSocialWidget extends WP_Widget {
 			'pages' => false,
 			'posts' => true,
 			'order' => 'gplus, facebook, linkedin, twitter, stumbleupon, digg, delicious',
-			'on_delicious' => true,
+			'on_delicious' => false,
 			'on_digg' => true,
-			'on_evernote' => true,
+			'on_evernote' => false,
 			'on_facebook' => true,
-			'on_friendfeed' => true,
-			'on_gbookmarks' => true,
-			'on_gbuzz' => true,
+			'on_friendfeed' => false,
+			'on_gbookmarks' => false,
+			'on_gbuzz' => false,
 			'on_gplus' => true,
 			'on_linkedin' => true,
-			'on_newsvine' => true,
-			'on_pingfm' => true,
-			'on_posterous' => true,
+			'on_newsvine' => false,
+			'on_pingfm' => false,
+			'on_posterous' => false,
 			'on_reddit' => true,
-			'on_slashdot' => true,
+			'on_slashdot' => false,
 			'on_stumbleupon' => true,
-			'on_technorati' => true,
+			'on_technorati' => false,
 			'on_tumblr' => true,
 			'on_twitter' => true
 		);
@@ -239,11 +239,6 @@ class tiltSocialWidget extends WP_Widget {
 			if(is_single() && !$instance['posts']) return;
 		}
 		
-		// Load Tilt Social Share Widget CSS
-		if($instance['tiltcss']) {
-			wp_register_style('tiltSocialWidget_css', WP_PLUGIN_URL . '/tilt-social-share/css/style.css');
-			wp_enqueue_style('tiltSocialWidget_css');
-		}
 		extract($args);
 
 		// User-selected settings
@@ -290,10 +285,6 @@ class tiltSocialWidget extends WP_Widget {
 		
 	}
 
-	function addHeaderCode() {
-		echo('<link type="text/css" rel="stylesheet" href="' . get_bloginfo('wpurl') . '/wp-content/plugins/tilt-social-share/css/style.css" />' . "\n");
-	}
-	
 	function processUrl($url) {
 		$url = str_replace('[URL]', urlencode(get_permalink()), $url);
 		$url = str_replace('[TITLE]', urlencode(get_the_title()), $url);
@@ -309,6 +300,13 @@ add_action('widgets_init', 'tiltSocialWidget_load_widgets');
 
 function tiltSocialWidget_load_widgets() {
     register_widget('tiltSocialWidget');
+	// Load widget CSS
+	if(is_active_widget(false, false, 'tilt_social_widget')) add_action('wp_head', 'tiltSocialWidget_load_style');
+}
+
+function tiltSocialWidget_load_style() {
+	wp_register_style('tiltSocialWidget_css', WP_PLUGIN_URL . '/tilt-social-share-widget/css/style.css');
+	wp_enqueue_style('tiltSocialWidget_css');
 }
 
 ?>
