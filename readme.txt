@@ -1,10 +1,10 @@
 ﻿=== Tilt Social Share Widget ===
 Contributors: Xonox
 Donate link: http://xonoxlabs.com/
-Tags: sharing, share, social, delicious, digg, evernote, facebook, friendfeed, google+, google bookmarks, google buzz, linkedin, newsvine, ping.fm, posterous, reddit, slashdot, stumbleupon, technorati, tumblr, twitter
+Tags: sharing, share, social, delicious, digg, evernote, facebook, friendfeed, google+, google bookmarks, google buzz, linkedin, newsvine, ping.fm, posterous, reddit, slashdot, stumbleupon, technorati, tumblr, twitter, pinterest, diigo, yahoo bookmarks, designbump
 Requires at least: 3.3
 Tested up to: 3.3
-Stable tag: 0.6 beta
+Stable tag: 0.7 beta
 
 Tilt Social Share Widget allows your users to quickly share your content on social sites. View "Description" tab for available services.
 
@@ -17,7 +17,9 @@ Tilt Social Share Widget is a simple widget that allows you to enable sharing of
 With Tilt Social Share Widget you can activate the following sharing services:
 
 * Del.icio.us
+* Designbump
 * Digg
+* Diigo
 * Evernote
 * Facebook
 * Friendfeed
@@ -27,6 +29,7 @@ With Tilt Social Share Widget you can activate the following sharing services:
 * LinkedIn
 * Newsvine
 * Ping.fm
+* Pinterest
 * Posterous
 * Reddit
 * Slashdot
@@ -34,6 +37,7 @@ With Tilt Social Share Widget you can activate the following sharing services:
 * Technorati
 * Tumblr
 * Twitter
+* Yahoo Bookmarks
 
 = More Information =
 
@@ -63,8 +67,13 @@ In the settings form, there's a field labeled 'Order', which you can use to achi
 
 == Changelog ==
 
-= 0.5 =
-Beta version.
+= 0.7 =
+Added 4 social services: Pinterest, Diigo, Yahoo Bookmarks and Designbump (Thank you Arrisje for reminding me to add such a popular social service as Pinterest).
+
+Corrected dots appearing before each icon on some browsers (Thank you Mary Zahrt).
 
 = 0.6 =
 Corrected CSS loading problem (icons were not visible).
+
+= 0.5 =
+Beta version.

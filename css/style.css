@@ -3,6 +3,7 @@ ul.tssw-list {
 	*margin-top: 10px;
 	padding: 0px;
 	list-style-type: none;
+	list-style: none;
 }
 
 li.tssw-item {
@@ -150,3 +151,20 @@ span.tssw-tumblr {
 span.tssw-twitter {
 	background-position: -544px 0px;
 }
+
+span.tssw-pinterest {
+	background-position: -576px 0px;
+}
+
+span.tssw-diigo {
+	background-position: -608px 0px;
+}
+
+span.tssw-yahoo {
+	background-position: -640px 0px;
+}
+
+span.tssw-designbump {
+	background-position: -672px 0px;
+}
+
