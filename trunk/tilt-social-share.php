@@ -4,7 +4,7 @@ Plugin Name: Tilt Social Share Widget
 Plugin URI: http://xonoxlabs.com/
 Description: Display icons that allow users to share your posts and pages in common social websites.
 Author: Rui Oliveira
-Version: 0.6
+Version: 0.7
 Author URI: http://xonoxlabs.com/
 */
 
@@ -20,11 +20,23 @@ class tiltSocialWidget extends WP_Widget {
 			'label' => 'Del.icio.us',
 			'url' => 'http://del.icio.us/post?url=[URL]&title=[TITLE]]&notes=[DESCRIPTION]'
 		),
+		'designbump' => array(
+			'slug' => 'designbump',
+			'name' => 'Designbump',
+			'label' => 'Designbump',
+			'url' => 'http://www.designbump.com/submit?url=[URL]&title=[TITLE]'
+		),
 		'digg' => array(
 			'slug' => 'digg',
 			'name' => 'Digg',
 			'label' => 'Digg',
 			'url' => 'http://www.digg.com/submit?phase=2&url=[URL]&title=[TITLE]'
+		),
+		'diigo' => array(
+			'slug' => 'diigo',
+			'name' => 'Diigo',
+			'label' => 'Diigo',
+			'url' => 'http://www.diigo.com/post?url=[URL]&title=[TITLE]'
 		),
 		'evernote' => array(
 			'slug' => 'evernote',
@@ -80,6 +92,12 @@ class tiltSocialWidget extends WP_Widget {
 			'label' => 'Ping.fm',
 			'url' => 'http://ping.fm/ref/?link=[URL]&title=[TITLE]&body=[DESCRIPTION]'
 		),
+		'pinterest' => array(
+			'slug' => 'pinterest',
+			'name' => 'Pinterest',
+			'label' => 'Pinterest',
+			'url' => 'http://pinterest.com/pin/create/button/?url=[URL]&media=[URL]&description=[DESCRIPTION]'
+		),
 		'posterous' => array(
 			'slug' => 'posterous',
 			'name' => 'Posterous',
@@ -121,6 +139,12 @@ class tiltSocialWidget extends WP_Widget {
 			'name' => 'Twitter',
 			'label' => 'Twitter',
 			'url' => 'http://twitter.com/home?status=[TITLE]+[URL]'
+		),
+		'yahoo' => array(
+			'slug' => 'yahoo',
+			'name' => 'Yahoo Bookmarks',
+			'label' => 'Yahoo Bookmarks',
+			'url' => 'http://bookmarks.yahoo.com/toolbar/savebm?u=[URL]&t=[TITLE]'
 		)
 	);
 
@@ -140,7 +164,9 @@ class tiltSocialWidget extends WP_Widget {
 			'posts' => true,
 			'order' => 'gplus, facebook, linkedin, twitter, stumbleupon, digg, delicious',
 			'on_delicious' => false,
+			'on_designbump' => false,
 			'on_digg' => true,
+			'on_diigo' => false,
 			'on_evernote' => false,
 			'on_facebook' => true,
 			'on_friendfeed' => false,
@@ -150,13 +176,15 @@ class tiltSocialWidget extends WP_Widget {
 			'on_linkedin' => true,
 			'on_newsvine' => false,
 			'on_pingfm' => false,
+			'on_pinterest' => false,
 			'on_posterous' => false,
 			'on_reddit' => true,
 			'on_slashdot' => false,
 			'on_stumbleupon' => true,
 			'on_technorati' => false,
 			'on_tumblr' => true,
-			'on_twitter' => true
+			'on_twitter' => true,
+			'on_yahoo' => false
 		);
 		
 		$instance = wp_parse_args((array)$instance, $defaults); 
@@ -208,7 +236,9 @@ class tiltSocialWidget extends WP_Widget {
 		$instance['posts'] = (bool)$new_instance['posts'];
 		$instance['order'] = strip_tags($new_instance['order']);
 		$instance['on_delicious'] = (bool)$new_instance['on_delicious'];
+		$instance['on_designbump'] = (bool)$new_instance['on_designbump'];
 		$instance['on_digg'] = (bool)$new_instance['on_digg'];
+		$instance['on_diigo'] = (bool)$new_instance['on_diigo'];
 		$instance['on_evernote'] = (bool)$new_instance['on_evernote'];
 		$instance['on_facebook'] = (bool)$new_instance['on_facebook'];
 		$instance['on_friendfeed'] = (bool)$new_instance['on_friendfeed'];
@@ -218,6 +248,7 @@ class tiltSocialWidget extends WP_Widget {
 		$instance['on_linkedin'] = (bool)$new_instance['on_linkedin'];
 		$instance['on_newsvine'] = (bool)$new_instance['on_newsvine'];
 		$instance['on_pingfm'] = (bool)$new_instance['on_pingfm'];
+		$instance['on_pinterest'] = (bool)$new_instance['on_pinterest'];
 		$instance['on_posterous'] = (bool)$new_instance['on_posterous'];
 		$instance['on_reddit'] = (bool)$new_instance['on_reddit'];
 		$instance['on_slashdot'] = (bool)$new_instance['on_slashdot'];
@@ -225,6 +256,7 @@ class tiltSocialWidget extends WP_Widget {
 		$instance['on_technorati'] = (bool)$new_instance['on_technorati'];
 		$instance['on_tumblr'] = (bool)$new_instance['on_tumblr'];
 		$instance['on_twitter'] = (bool)$new_instance['on_twitter'];
+		$instance['on_yahoo'] = (bool)$new_instance['on_yahoo'];
 
 		return($instance);
 	
