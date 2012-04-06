@@ -4,7 +4,7 @@ Donate link: http://xonoxlabs.com/
 Tags: sharing, share, social, delicious, digg, evernote, facebook, friendfeed, google+, google bookmarks, google buzz, linkedin, newsvine, ping.fm, posterous, reddit, slashdot, stumbleupon, technorati, tumblr, twitter, pinterest, diigo, yahoo bookmarks, designbump
 Requires at least: 3.3
 Tested up to: 3.3
-Stable tag: 0.7 beta
+Stable tag: 0.75 beta
 
 Tilt Social Share Widget allows your users to quickly share your content on social sites. View "Description" tab for available services.
 
@@ -66,6 +66,10 @@ In the settings form, there's a field labeled 'Order', which you can use to achi
 2. Some of the Tilt Social Icons
 
 == Changelog ==
+
+= 0.75 =
+Updated StumbleUpon logo.
+
 
 = 0.7 =
 Added 4 social services: Pinterest, Diigo, Yahoo Bookmarks and Designbump (Thank you Arrisje for reminding me to add such a popular social service as Pinterest).
