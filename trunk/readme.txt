@@ -74,7 +74,7 @@ Corrected an issue on 404 pages (Thank you Terence for pointing it out AND givin
 
 Updated Google+ submission link (Thank you Daniel Pass for pointing it out).
 
-Added a few steps on the installation procedure for those who are just starting with WordPress.
+Added a few steps on the installation procedure for those who are just starting with WordPress (Thank you Jason for the heads up).
 
 = 0.75 =
 Updated StumbleUpon logo.
