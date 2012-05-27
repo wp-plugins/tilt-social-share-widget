@@ -4,7 +4,7 @@ Donate link: http://xonoxlabs.com/
 Tags: sharing, share, social, delicious, digg, evernote, facebook, friendfeed, google+, google bookmarks, google buzz, linkedin, newsvine, ping.fm, posterous, reddit, slashdot, stumbleupon, technorati, tumblr, twitter, pinterest, diigo, yahoo bookmarks, designbump
 Requires at least: 3.3
 Tested up to: 3.3
-Stable tag: 0.75
+Stable tag: 0.9
 
 Tilt Social Share Widget allows your users to quickly share your content on social sites. View "Description" tab for available services.
 
@@ -47,7 +47,9 @@ To know more about Tilt Social Share Widget go to <a href="http://xonoxlabs.com/
 
 You can download and install Tilt Social Share Widget using the built in WordPress plugin installer. If you download Tilt Social Share Widget manually, make sure it is uploaded to "/wp-content/plugins/tilt-social-share/".
 
-Activate Tilt Social Share Widget in the "Plugins" admin panel using the "Activate" link. 
+Activate Tilt Social Share Widget in the "Plugins" admin panel using the "Activate" link.
+
+On your Widgets section (under Appearance) the Tilt Social Share Widget will be available to use. Just drag it to one of your sidebars or other widget containers and you'll be able to set it up to your liking.
 
 == Frequently Asked Questions ==
 
@@ -66,6 +68,13 @@ In the settings form, there's a field labeled 'Order', which you can use to achi
 2. Some of the Tilt Social Icons
 
 == Changelog ==
+
+= 0.9 =
+Corrected an issue on 404 pages (Thank you Terence for pointing it out AND giving a solution for it).
+
+Updated Google+ submission link (Thank you Daniel Pass for pointing it out).
+
+Added a few steps on the installation procedure for those who are just starting with WordPress.
 
 = 0.75 =
 Updated StumbleUpon logo.
