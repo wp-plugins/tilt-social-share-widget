@@ -72,7 +72,7 @@ class tiltSocialWidget extends WP_Widget {
 			'slug' => 'gplus',
 			'name' => 'Google+',
 			'label' => 'Google+',
-			'url' => 'https://m.google.com/app/plus/x/?v=compose&content=[URL]'
+			'url' => 'https://plus.google.com/share?url=[URL]'
 		),
 		'linkedin' => array(
 			'slug' => 'linkedin',
@@ -266,9 +266,10 @@ class tiltSocialWidget extends WP_Widget {
 	function widget($args, $instance) {
 	
 		// Check if it should display widget
-		if(is_page() || is_single()) {
+		if(is_page() || is_single() || is_404()) {
 			if(is_page() && !$instance['pages']) return;
 			if(is_single() && !$instance['posts']) return;
+			if( is_404() ) return;
 		}
 		
 		extract($args);
