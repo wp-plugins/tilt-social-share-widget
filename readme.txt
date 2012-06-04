@@ -49,7 +49,7 @@ You can download and install Tilt Social Share Widget using the built in WordPre
 
 Activate Tilt Social Share Widget in the "Plugins" admin panel using the "Activate" link.
 
-On your Widgets section (under Appearance) the Tilt Social Share Widget will be available to use. Just drag it to one of your sidebars or other widget containers and you'll be able to set it up to your liking.
+On your Widgets section (under Appearance) the Tilt Social Share Widget will be available to use. Just drag it to one of your sidebars or other widget containers and you'll be able to set it up to suit your needs.
 
 == Frequently Asked Questions ==
 
