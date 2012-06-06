@@ -4,7 +4,7 @@ Plugin Name: Tilt Social Share Widget
 Plugin URI: http://xonoxlabs.com/
 Description: Display icons that allow users to share your posts and pages in common social websites.
 Author: Rui Oliveira
-Version: 0.9
+Version: 0.90
 Author URI: http://xonoxlabs.com/
 */
 
