@@ -4,7 +4,7 @@ Donate link: http://xonoxlabs.com/
 Tags: sharing, share, social, delicious, digg, evernote, facebook, friendfeed, google+, google bookmarks, google buzz, linkedin, newsvine, ping.fm, posterous, reddit, slashdot, stumbleupon, technorati, tumblr, twitter, pinterest, diigo, yahoo bookmarks, designbump
 Requires at least: 3.3
 Tested up to: 3.3
-Stable tag: 0.91
+Stable tag: 0.96
 
 Tilt Social Share Widget allows your users to quickly share your content on social sites. View "Description" tab for available services.
 
@@ -69,6 +69,13 @@ In the settings form, there's a field labeled 'Order', which you can use to achi
 
 == Changelog ==
 
+= 0.96 =
+Added possibility not to use the widget on the Homepage (Paul's suggestion).
+
+You can now select what to share on homepage. You can share latest post on the blogroll or the site title and tagline (By suggestion of Yuriy and Diane).
+
+Removed the possibility to use own CSS (no one was using it anyway).
+
 = 0.91 =
 Correction of non-update issue. 
 
@@ -96,7 +103,8 @@ Beta version.
 
 == Upgrade Notice ==
 
-== Upgrade Notice ==
+= 0.96 =
+Added functionalities: Option to use widget on Homepage; Select what to share on Homepage; Removed own CSS usage. !!!WARNING!!!: If you use Tilt Social Share Widget on your homepage, go to the widget options and check "Homepage" option. It's turned off by default.
 
 = 0.75 =
 Updated StumbleUpon icon.

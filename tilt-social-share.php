@@ -4,7 +4,7 @@ Plugin Name: Tilt Social Share Widget
 Plugin URI: http://xonoxlabs.com/
 Description: Display icons that allow users to share your posts and pages in common social websites.
 Author: Rui Oliveira
-Version: 0.91
+Version: 0.96
 Author URI: http://xonoxlabs.com/
 */
 
@@ -162,6 +162,8 @@ class tiltSocialWidget extends WP_Widget {
 			'tiltcss' => true,
 			'pages' => false,
 			'posts' => true,
+			'homepage' => false,
+			'home_share' => 'home_general',
 			'order' => 'gplus, facebook, linkedin, twitter, stumbleupon, digg, delicious',
 			'on_delicious' => false,
 			'on_designbump' => false,
@@ -201,11 +203,16 @@ class tiltSocialWidget extends WP_Widget {
 				<label for="<?php echo $this->get_field_id('pages'); ?>"> Pages</label><br />
 				<input class="checkbox" type="checkbox" <?php checked($instance['posts']); ?> id="<?php echo $this->get_field_id('posts'); ?>" name="<?php echo $this->get_field_name('posts'); ?>" />
 				<label for="<?php echo $this->get_field_id('posts'); ?>"> Posts</label><br />
+				<input class="checkbox" type="checkbox" <?php checked($instance['homepage']); ?> id="<?php echo $this->get_field_id('homepage'); ?>" name="<?php echo $this->get_field_name('homepage'); ?>" />
+				<label for="<?php echo $this->get_field_id('homepage'); ?>"> Homepage</label><br />
 			</p>
-			<p>If you want to use your own icons and style, uncheck this option:</p>
+			<p>What should be shared on homepage:</p>
 			<p>
-				<input class="checkbox" type="checkbox" <?php checked($instance['tiltcss'], true); ?> id="<?php echo $this->get_field_id('tiltcss'); ?>" name="<?php echo $this->get_field_name('tiltcss'); ?>" />
-				<label for="<?php echo $this->get_field_id('tiltcss'); ?>"> Use Tilt Social Share CSS and icons</label>
+				<?php $options = get_option( 'my_option' ); ?>
+				<input class="radio" type="radio" value="home_general" <?php checked($instance['home_share'] == 'home_general'); ?> id="<?php echo $this->get_field_id('home_share'); ?>" name="<?php echo $this->get_field_name('home_share'); ?>" />
+				<label for="<?php echo $this->get_field_id('home_share'); ?>"> Site title and tagline</label><br />
+				<input class="radio" type="radio" value="home_post" <?php checked($instance['home_share'] == 'home_post'); ?> id="<?php echo $this->get_field_id('home_share'); ?>" name="<?php echo $this->get_field_name('home_share'); ?>" />
+				<label for="<?php echo $this->get_field_id('home_share'); ?>"> Latest post on post listing</label>
 			</p>
 			<p>Select which services are enabled:</p>
 			<p>
@@ -234,6 +241,8 @@ class tiltSocialWidget extends WP_Widget {
 		$instance['tiltcss'] = (bool)$new_instance['tiltcss'];
 		$instance['pages'] = (bool)$new_instance['pages'];
 		$instance['posts'] = (bool)$new_instance['posts'];
+		$instance['homepage'] = (bool)$new_instance['homepage'];
+		$instance['home_share'] = $new_instance['home_share'];
 		$instance['order'] = strip_tags($new_instance['order']);
 		$instance['on_delicious'] = (bool)$new_instance['on_delicious'];
 		$instance['on_designbump'] = (bool)$new_instance['on_designbump'];
@@ -266,9 +275,10 @@ class tiltSocialWidget extends WP_Widget {
 	function widget($args, $instance) {
 	
 		// Check if it should display widget
-		if(is_page() || is_single() || is_404()) {
+		if(is_front_page() || is_page() || is_single() || is_404()) {
 			if(is_page() && !$instance['pages']) return;
 			if(is_single() && !$instance['posts']) return;
+			if(is_front_page() && !$instance['homepage']) return;
 			if( is_404() ) return;
 		}
 		
@@ -286,6 +296,32 @@ class tiltSocialWidget extends WP_Widget {
 		?>
 		<ul class="tssw-list">
 			<?php
+
+				// Define what to share on homepage
+				$homeTitle = '';
+				$homeDescription = '';
+				$homeURL = '';
+				if(is_front_page()) {
+					// Share post info
+					if($instance['home_share'] == 'home_post') {
+						query_posts('posts_per_page=1');	
+						if(have_posts()){
+							while (have_posts()){
+								the_post();
+								$homeTitle = get_the_title();
+								$homeExcerpt = get_the_excerpt();
+								$homeURL = get_permalink();
+							}	
+						}
+						wp_reset_query();
+					}
+					// Share site info
+					if($instance['home_share'] == 'home_general') {
+						$homeTitle = get_bloginfo('name');
+						$homeExcerpt = get_bloginfo('description');
+						$homeURL = get_home_url();
+					}
+				}
 			
 				// Start by the ordered elements
 				$order = str_replace(' ', '', $instance['order']);
@@ -294,7 +330,7 @@ class tiltSocialWidget extends WP_Widget {
 					foreach($elements as $element) {
 						if($instance['on_' . $element]) {
 							echo('<li class="tssw-item">');
-							echo('<a href="' . $this->processUrl($this->services[$element]['url']) . '" target="_blank"><span class="tssw-icon tssw-' . $this->services[$element]['slug'] . '"></span><span class="tssw-tooltip">' . $this->services[$element]['label'] . '</span></a>');
+							echo('<a href="' . $this->processUrl($this->services[$element]['url'], $homeTitle, $homeDescription, $homeURL) . '" target="_blank"><span class="tssw-icon tssw-' . $this->services[$element]['slug'] . '"></span><span class="tssw-tooltip">' . $this->services[$element]['label'] . '</span></a>');
 							echo('</li>');
 						}
 					}
@@ -304,7 +340,7 @@ class tiltSocialWidget extends WP_Widget {
 				foreach($this->services as $service) {
 					if($instance['on_' . $service['slug']] && !in_array($service['slug'], $elements)) {
 						echo('<li class="tssw-item">');
-						echo('<a href="' . $this->processUrl($service['url']) . '" target="_blank"><span class="tssw-icon tssw-' . $service['slug'] . '"></span><span class="tssw-tooltip">' . $service['label'] . '</span></a>');
+						echo('<a href="' . $this->processUrl($service['url'], $homeTitle, $homeDescription, $homeURL) . '" target="_blank"><span class="tssw-icon tssw-' . $service['slug'] . '"></span><span class="tssw-tooltip">' . $service['label'] . '</span></a>');
 						echo('</li>');
 					}
 				}
@@ -318,11 +354,20 @@ class tiltSocialWidget extends WP_Widget {
 		
 	}
 
-	function processUrl($url) {
-		$url = str_replace('[URL]', urlencode(get_permalink()), $url);
-		$url = str_replace('[TITLE]', urlencode(get_the_title()), $url);
+	function processUrl($url, $homeTitle, $homeDescription, $homeURL) {
 		$url = str_replace('[DOMAIN]', urlencode(get_bloginfo('url')), $url);
-		$url = str_replace('[DESCRIPTION]', urlencode(get_the_excerpt()), $url);
+		if($homeURL == '')
+			$url = str_replace('[URL]', urlencode(get_permalink()), $url);
+		else
+			$url = str_replace('[URL]', urlencode($homeURL), $url);
+		if($homeTitle == '')
+			$url = str_replace('[TITLE]', urlencode(get_the_title()), $url);
+		else
+			$url = str_replace('[TITLE]', urlencode($homeTitle), $url);
+		if($homeDescription == '')
+			$url = str_replace('[DESCRIPTION]', urlencode(get_the_excerpt()), $url);
+		else
+			$url = str_replace('[DESCRIPTION]', urlencode($homeDescription), $url);
 		return $url;
 	}
 	
