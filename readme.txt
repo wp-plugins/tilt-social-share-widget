@@ -1,16 +1,18 @@
-﻿=== Tilt Social Share Widget ===
+=== Tilt Social Share Widget ===
 Contributors: Xonox
 Donate link: http://xonoxlabs.com/
 Tags: sharing, share, social, delicious, digg, evernote, facebook, friendfeed, google+, google bookmarks, google buzz, linkedin, newsvine, ping.fm, posterous, reddit, slashdot, stumbleupon, technorati, tumblr, twitter, pinterest, diigo, yahoo bookmarks, designbump
 Requires at least: 3.3
 Tested up to: 3.3
-Stable tag: 0.96
+Stable tag: 0.97
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Tilt Social Share Widget allows your users to quickly share your content on social sites. View "Description" tab for available services.
 
 == Description ==
 
-Tilt Social Share Widget is a simple widget that allows you to enable sharing of your posts and/or pages. You can use the default widget icons or style it to use your own icons and look. If you don't use any style, it will simply make an unordered list of the sites you enable.
+Tilt Social Share Widget is a simple widget that allows you to enable sharing of your posts and/or pages.
 
 = Available Services =
 
@@ -68,6 +70,9 @@ In the settings form, there's a field labeled 'Order', which you can use to achi
 2. Some of the Tilt Social Icons
 
 == Changelog ==
+
+= 0.97 =
+Corrected CSS problem to be compatible with Aggregate theme (Thank you Aurélien and Jason for pointing it out).
 
 = 0.96 =
 Added possibility not to use the widget on the Homepage (Paul's suggestion).
